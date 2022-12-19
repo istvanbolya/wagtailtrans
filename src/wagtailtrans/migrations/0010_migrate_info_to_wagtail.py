@@ -11,6 +11,8 @@ def transfer_info(apps, schema_editor):
 
     for language in Language.objects.all():
         locale, created = Locale.objects.get_or_create(language_code=language.code)
+        if created:
+            print(f"{locale} created!")
 
     for page in TranslatablePage.objects.filter(canonical_page__isnull=True):
         page.locale = Locale.objects.get(language_code=page.language.code)
