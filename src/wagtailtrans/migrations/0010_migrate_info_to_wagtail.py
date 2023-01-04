@@ -22,10 +22,7 @@ def transfer_info(apps, schema_editor):
             transl_page.locale = Locale.objects.get(
                 language_code=transl_page.language.code
             )
-            try:
-                transl_page.save()
-            except IntegrityError:
-                pass
+            transl_page.save()
 
 
 class Migration(migrations.Migration):
