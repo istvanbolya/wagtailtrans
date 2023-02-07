@@ -9,20 +9,20 @@ def transfer_info(apps, schema_editor):
     TranslatablePage = apps.get_model("wagtailtrans", "TranslatablePage")
     Locale = apps.get_model("wagtailcore", "Locale")
 
-    for language in Language.objects.all():
-        locale, created = Locale.objects.get_or_create(language_code=language.code)
-        if created:
-            print(f"{locale} created!")
+    # for language in Language.objects.all():
+    #     locale, created = Locale.objects.get_or_create(language_code=language.code)
+    #    if created:
+    #        print(f"{locale} created!")
 
-    for page in TranslatablePage.objects.filter(canonical_page__isnull=True):
-        page.locale = Locale.objects.get(language_code=page.language.code)
-        page.save()
-        for transl_page in page.translations.all():
-            transl_page.translation_key = page.translation_key
-            transl_page.locale = Locale.objects.get(
-                language_code=transl_page.language.code
-            )
-            transl_page.save()
+    # for page in TranslatablePage.objects.filter(canonical_page__isnull=True):
+    #    page.locale = Locale.objects.get(language_code=page.language.code)
+    #    page.save()
+    #    for transl_page in page.translations.all():
+    #        transl_page.translation_key = page.translation_key
+    #        transl_page.locale = Locale.objects.get(
+    #            language_code=transl_page.language.code
+    #        )
+    #        transl_page.save()
 
 
 class Migration(migrations.Migration):
